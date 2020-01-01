@@ -38,11 +38,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    var date = new Date()
     //当前星期几，星期日为0
-    var day = new Date().getDay()
+    var day = date.getDay()
     if(day == 0 || day == 6) {
       this.setData({weekendFlag: true})
     }
+
+    console.log(date)
+    console.log(date.getHours())
+    console.log(date.getMinutes())
+    console.log(date.getSeconds())
+    //设置定时器：单位ms
+    // setInterval(function(){
+    //   console.log("dsq")
+    // }, 1000)
   },
 
   /**
