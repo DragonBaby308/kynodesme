@@ -28,5 +28,6 @@
         "selectedIconPath": "images/tabBarIcons/selectedSetting.png"
       }
     ]
-  }
+  },
+  "debug": true
 }

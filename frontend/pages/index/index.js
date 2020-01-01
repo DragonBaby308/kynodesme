@@ -4,7 +4,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    weekendFlag: false,
+    weekdayList: ["工作日"],
+    weekendList: ["周末"]
   },
 
   /**
@@ -18,7 +20,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    var day = new Date().getDay()
+    if(day == 0 || day == 6) {
+      this.setData({weekendFlag: true})
+    }
   },
 
   /**
