@@ -38,6 +38,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    //当前星期几，星期日为0
     var day = new Date().getDay()
     if(day == 0 || day == 6) {
       this.setData({weekendFlag: true})
@@ -48,21 +49,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    // this.setData({weekdatList: wx.getStorageSync("weekdayList")})
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+    // wx.setStorageSync("weekdayList", this.data.weekdayList)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+    // wx.setStorageSync("weekdayList", this.data.weekdayList)
   },
 
   /**
@@ -88,13 +89,32 @@ Page({
 
   //todoList更改事件
   select: function(e){
-    console.log(e)
-    console.log(e.detail.value)
+    var details = e.detail.value
+    //周末
+    if(this.data.weekendFlag){
+      //每次触发事件后，清空todolist，将所有done设置为false
+      this.data.weekendList.forEach(function (item) {
+        item.done = false
+      })
+      //重新将点击的todolist.done设置为true
+      for (var key in details) {
+        this.data.weekendList[details[key]].done = true
+      }
+    }else{
+      this.data.weekdayList.forEach(function (item) {
+        item.done = false
+      })
+      for (var key in details) {
+        this.data.weekdayList[details[key]].done = true
+      }
+    }
+    //这一段代码耦合性太高，应该提取个函数的，但是js的函数我不熟悉 - -
+    //算了，去他妈的
   },
 
   //加班
   work: function(){
-    console.log("加班")
+    //周末加班，也就是说不再是周末了
     this.setData({weekendFlag: false})
   },
 

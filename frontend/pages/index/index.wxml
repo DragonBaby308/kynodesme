@@ -1,6 +1,7 @@
 <view class="container">
-  <!-- 加班 & 报表 按钮 -->
+  <!-- 按钮部分 -->
   <view class="btns">
+    <!-- disabled = true禁用，禁用时不能加班，说明是工作日 -->
     <button type="default" disabled="{{!weekendFlag}}" bindtap="work">加班</button>
     <button type="primary" bindtap="report">报表</button>
   </view>
@@ -10,12 +11,12 @@
     <view wx:for="{{notice}}" class="notice-item">{{item}}</view>
   </view>
 
-  <!-- todo-list主体 -->
+  <!-- 主体部分 -->
   <!-- 周末 -->
   <view wx:if="{{weekendFlag}}" class="todoList">
     <checkbox-group bindchange="select">
       <label style="display:flex" wx:for="{{weekendList}}">
-        <checkbox value="{{item.name}}" checked="{{item.done}}"/>{{item.name}}
+        <checkbox value="{{index}}" checked="{{item.done}}"/>{{item.name}}
       </label>
     </checkbox-group>
   </view>
@@ -24,7 +25,7 @@
   <view wx:else class="todoList">
     <checkbox-group bindchange="select">
       <label style="display:flex" wx:for="{{weekdayList}}">
-        <checkbox value="{{item.name}}" checked="{{item.done}}"/>{{item.name}}
+        <checkbox value="{{index}}" checked="{{item.done}}"/>{{item.name}}
       </label>
     </checkbox-group>
   </view>
