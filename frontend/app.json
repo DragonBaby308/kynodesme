@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/setting/setting",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "kynodesme",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "selectedColor": "#0000FF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "TodoList",
+        "iconPath": "images/tabBarIcons/list.png",
+        "selectedIconPath": "images/tabBarIcons/selectedList.png"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "设置",
+        "iconPath": "images/tabBarIcons/setting.png",
+        "selectedIconPath": "images/tabBarIcons/selectedSetting.png"
+      }
+    ]
+  }
+}
