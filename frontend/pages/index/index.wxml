@@ -1,4 +1,31 @@
 <view class="container">
-  <view wx:if="{{weekendFlag}}" class="todoList">{{weekendList}}</view>
-  <view wx:else class="todoList">{{weekdayList}}</view>
+  <!-- 加班 & 报表 按钮 -->
+  <view class="btns">
+    <button type="default" disabled="{{!weekendFlag}}" bindtap="work">加班</button>
+    <button type="primary" bindtap="report">报表</button>
+  </view>
+
+  <!-- 置顶部分 -->
+  <view class="notice">
+    <view wx:for="{{notice}}" class="notice-item">{{item}}</view>
+  </view>
+
+  <!-- todo-list主体 -->
+  <!-- 周末 -->
+  <view wx:if="{{weekendFlag}}" class="todoList">
+    <checkbox-group bindchange="select">
+      <label style="display:flex" wx:for="{{weekendList}}">
+        <checkbox value="{{item.name}}" checked="{{item.done}}"/>{{item.name}}
+      </label>
+    </checkbox-group>
+  </view>
+
+  <!-- 工作日 -->
+  <view wx:else class="todoList">
+    <checkbox-group bindchange="select">
+      <label style="display:flex" wx:for="{{weekdayList}}">
+        <checkbox value="{{item.name}}" checked="{{item.done}}"/>{{item.name}}
+      </label>
+    </checkbox-group>
+  </view>
 </view>

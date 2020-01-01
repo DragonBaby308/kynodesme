@@ -5,8 +5,26 @@ Page({
    */
   data: {
     weekendFlag: false,
-    weekdayList: ["工作日"],
-    weekendList: ["周末"]
+    weekdayList: [
+      { name: "吃药", done: false },
+      { name: "爽肤水、柳屋", done: false },
+      { name: "打上班卡", done: false },
+      { name: "洗鼻，保温杯里泡枸杞", done: false },
+      { name: "中午keep：颈椎运动3min", done: false },
+      { name: "午睡醒来洗脸", done: false },
+      { name: "写日报", done: false },
+      { name: "打下班卡", done: false },
+      { name: "爬楼梯，不许买零食", done: false },
+      { name: "keep：腹肌K4", done: false },
+      { name: "眼霜、柳屋", done: false },
+      { name: "学习，发博客", done: false}
+    ],
+    weekendList: [
+      { name: "吃药", done: false },
+      { name: "爽肤水、柳屋", done: false },
+      { name: "学习，发博客", done: false }
+    ],
+    notice: ["复习面经，准备春招！！！", "KenjaTime", "吃完饭不要立即坐下或躺下，站5min"]
   },
 
   /**
@@ -66,5 +84,22 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  //todoList更改事件
+  select: function(e){
+    console.log(e)
+    console.log(e.detail.value)
+  },
+
+  //加班
+  work: function(){
+    console.log("加班")
+    this.setData({weekendFlag: false})
+  },
+
+  //报表
+  report: function(){
+    console.log("报表")
   }
 })
