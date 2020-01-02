@@ -45,14 +45,21 @@ Page({
       this.setData({weekendFlag: true})
     }
 
-    console.log(date)
-    console.log(date.getHours())
-    console.log(date.getMinutes())
-    console.log(date.getSeconds())
-    //设置定时器：单位ms
-    // setInterval(function(){
-    //   console.log("dsq")
-    // }, 1000)
+    //给定一个hh:MM:ss，计算到23:59:60需要多少ms
+    var h = date.getHours()
+    var m = date.getMinutes()
+    var s = date.getSeconds()
+    var delay = ((60 - s) + 60 * (59 - m) + 3600 * (23 - h)) * 1000
+    //1天(d)=86400000毫秒(ms)
+    var oneDay = 86400000
+    //设置定时器，当晚0点开启定时任务
+    setTimeout(function () {
+      //定时任务，每过24h执行一次
+      setInterval(function () {
+        //将todolist数据POST到服务器，后端采用beego框架
+        //将todolist.done全部改为false
+      }, oneDay)
+    }, delay)
   },
 
   /**
