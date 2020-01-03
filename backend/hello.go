@@ -6,6 +6,12 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
+//结构体模型
+type User struct {
+	Id   int
+	Name string `orm:"size(100)"`
+}
+
 //初始化
 func init() {
 	maxIdle := 30 //最大空闲连接
@@ -21,7 +27,27 @@ func init() {
 }
 
 func main() {
-	fmt.Println("小程序后端测试")
+	o := orm.NewOrm()
+
+	user := User{Name: "slene"}
+
+	// insert，插入
+	id, err := o.Insert(&user)
+	fmt.Printf("ID: %d, ERR: %v\n", id, err)
+
+	// update，更新
+	user.Name = "astaxie"
+	num, err := o.Update(&user)
+	fmt.Printf("NUM: %d, ERR: %v\n", num, err)
+
+	// read one，查询
+	u := User{Id: user.Id}
+	err = o.Read(&u)
+	fmt.Printf("ERR: %v\n", err)
+
+	// delete，删除
+	num, err = o.Delete(&u)
+	fmt.Printf("NUM: %d, ERR: %v\n", num, err)
 }
 
 
