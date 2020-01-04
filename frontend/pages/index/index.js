@@ -5,7 +5,9 @@ Page({
    */
   data: {
     weekendFlag: false,
-    weekdayList: [
+    weekdayList: [],
+    weekendList: [],
+    defaultWeekdayList: [
       { name: "吃药", done: false },
       { name: "爽肤水、柳屋", done: false },
       { name: "打上班卡", done: false },
@@ -17,9 +19,9 @@ Page({
       { name: "爬楼梯，不许买零食", done: false },
       { name: "keep：腹肌K4", done: false },
       { name: "眼霜、柳屋", done: false },
-      { name: "学习，发博客", done: false}
+      { name: "学习，发博客", done: false }
     ],
-    weekendList: [
+    defaultWeekendList: [
       { name: "吃药", done: false },
       { name: "爽肤水、柳屋", done: false },
       { name: "学习，发博客", done: false }
@@ -38,13 +40,34 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    this.setData({ weekdayList: this.data.defaultWeekdayList })
+    this.setData({ weekendList: this.data.defaultWeekendList })
+    
+    //登录，获取openId
+    var openId = 11111111111
+
+    //根据openId查询
+    wx.request({
+      url: 'localhost:8082?id=' + openId,
+      method: "GET",
+      success(res) {
+        console.log(res.data)
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
+
+
+
     var date = new Date()
-    //当前星期几，星期日为0
+    //获取当前星期几，星期日为0
     var day = date.getDay()
-    if(day == 0 || day == 6) {
-      this.setData({weekendFlag: true})
+    if (day == 0 || day == 6) {
+      this.setData({ weekendFlag: true })
     }
 
+    //设置定时器
     //给定一个hh:MM:ss，计算到23:59:60需要多少ms
     var h = date.getHours()
     var m = date.getMinutes()
