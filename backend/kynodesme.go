@@ -13,6 +13,6 @@ func main() {
 }
 
 func Hello(w http.ResponseWriter, r * http.Request) {
-	//记录日志  log
+	fmt.Println(r.URL)	//记录日志  log
 	fmt.Fprintf(w, "Hello World")
 }
